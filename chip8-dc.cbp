@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="chip8-dc" />
+		<Option pch_mode="2" />
+		<Option compiler="dc-gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/chip8-dc.elf" prefix_auto="1" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="obj/Debug/" />
+				<Option type="5" />
+				<Option compiler="dc-gcc" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g -Wa,-g -Wl,-g" />
+					<Add option="-DDEBUG" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="obj\Debug\romdisk.o" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/chip8-dc.elf" prefix_auto="1" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="obj/Release/" />
+				<Option type="5" />
+				<Option compiler="dc-gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-DRELEASE" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="obj\Release\romdisk.o" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Linker>
+			<Add library="GL" />
+			<Add library="m" />
+		</Linker>
+		<ExtraCommands>
+			<Add before='&quot;$(#DREAMSDK_MKRDOBJ)&quot; &quot;$(PROJECT_DIR)&quot; &quot;$(TARGET_OBJECT_DIR)&quot; &quot;$(TARGET_OUTPUT_FILE)&quot;' />
+			<Add before='&quot;$(#DREAMSDK_MKISOIMG)&quot; &quot;$(PROJECT_DIR)&quot; &quot;$(TARGET_OBJECT_DIR)&quot;' />
+		</ExtraCommands>
+		<Unit filename="chip8.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="include/chip8.h" />
+		<Unit filename="include/drawing_utils.h" />
+		<Unit filename="include/file_utils.h" />
+		<Unit filename="include/input_utils.h" />
+		<Unit filename="include/lodepng.h" />
+		<Unit filename="include/menu.h" />
+		<Unit filename="lib/drawing_utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lib/file_utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lib/input_utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lib/lodepng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lib/menu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="romdisk/charmap_transparent.png" />
+		<Extensions>
+			<compiler project_loader_arguments="">
+				<compiler_settings target="Debug" target_loader_arguments="" />
+				<compiler_settings target="Release" target_loader_arguments='-x &quot;$(PROJECTDIR)$(TARGET_OUTPUT_FILE)&quot; -i &quot;$(PROJECTDIR)$(TARGET_OBJECT_DIR)cd_root.iso&quot;' />
+			</compiler>
+			<debugger>
+				<remote_debugging target="Debug">
+					<options conn_type="0" ip_address="localhost" ip_port="2159" loader_arguments='-g -x &quot;$(DEBUGGEE)&quot;' loader_waiting_time="0" />
+				</remote_debugging>
+			</debugger>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
